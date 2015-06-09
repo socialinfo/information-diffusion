@@ -3,7 +3,7 @@ function bindEvent(){
 	$('#startSimulation').on('click',function(){
 
 		if(!isRun){
-			handle = setInterval(runActivity,1000)
+			handle = setInterval(simulationSI,1000)
 			isRun = true
 			$('#startSimulation').text('stop'.toUpperCase())
 			$('#startSimulation').removeClass('btn-primary')
