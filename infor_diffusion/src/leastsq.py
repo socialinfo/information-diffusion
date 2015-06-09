@@ -89,12 +89,17 @@ def simulationData(modelName,x,init_val,argsName,p):
     data = func1(x, p) 
     return data
 if __name__  == '__main__':
+    with open('data.json','r') as f:
+        dd = json.load(f)
+    print dd
+    total_dict = {}
     real_data = [173772,196452,214711,237735,265464,289709,312804,337017,362827]
     x = np.linspace(0, 1, len(real_data))
     #第一步猜想的值
-    p0 = [0.0001]  
+    p0 = [0.00001]  
     init_val = [362827.0,173772]
-    fitArgs('SI',init_val,'I',x,p0,real_data) 
+    #print jsonData
+    fitArgs('SI',dd['init_val'],'I',dd['x'],dd['p0'],dd['real_data']) 
     
     #实际的值
     p = [0.003]

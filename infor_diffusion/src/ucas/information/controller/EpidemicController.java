@@ -14,10 +14,9 @@ import ucas.information.service.EpidemicService;
 public class EpidemicController {
 	@Resource(name = "epidemicService")
     private EpidemicService service;
-	@RequestMapping(value = "/simodel.do",method={RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "simodel.do",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
-	public SIModel fittingData(@RequestParam(value = "xs", required = true) String []xs, @RequestParam(value = "ys",required = true) String[] ys){
-		
+	public SIModel fittingData(@RequestParam(value = "xs", required = true) int []xs, @RequestParam(value = "ys",required = true) int[] ys){
 		return service.fittingModel(xs, ys);
 	}
 }
