@@ -23,9 +23,11 @@
 }
 
 </style>
-<script src="<%=basePath%>/js/d3.min.js"></script>
-<script src="<%=basePath%>/js/cascades/button.js"></script>
 <script src="<%=basePath%>/js/jquery/jquery-1.11.1.min.js"></script>
+<script src="<%=basePath%>/js/d3.min.js"></script>
+
+<script src="<%=basePath%>/js/cascades/button.js"></script>
+
 <title>Insert title here</title>
 
 </head>
