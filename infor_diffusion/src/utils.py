@@ -5,9 +5,9 @@ import numpy as np
 import math
 
 #SI model
-def SI(w, t,beta,alpha): 
+def SI(w, t,beta): 
     x, y = w
-    return np.array([-beta*y*x/(2*math.pi*alpha),beta*y*x/(2*math.pi*alpha)])  
+    return np.array([-beta*y*x,beta*y*x])  
 #SIR model
 def SIR(w, t, beta,gamma): 
     x, y, z = w
@@ -22,7 +22,7 @@ def SIRS(w, t,alpha,beta,gamma):
     return np.array([alpha*z-beta*y*x, beta*y*x-gamma*y, gamma*y-alpha*z])
 
 #str_express:(function_name,initital data length args length)
-func_dict = {"SI":(SI,2,2),"SIR":(SIR,3,2),"SIS":(SIS,2,2),'SIRS':(SIRS,3,3)}
+func_dict = {"SI":(SI,2,1),"SIR":(SIR,3,2),"SIS":(SIS,2,2),'SIRS':(SIRS,3,3)}
 #the label show in the figure
 labels = ['$S(t)$','$I(t)$','$R(t)$']
 #the line color

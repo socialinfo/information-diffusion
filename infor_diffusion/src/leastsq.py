@@ -6,9 +6,8 @@ from scipy.integrate import odeint
 import matplotlib.pyplot as plt 
 import numpy as np
 from utils import func_dict,args_dict
+import json
 
-def add(a,b):
-    return a+b
 #包装求解微分方程的函数
 def fitting_model(model,init_val,pos):
     def wrapfunc(x,p):
@@ -51,7 +50,16 @@ def fitArgs(modelName,init_val,argsName,x,p,data):
     
     re = residuals(character[0],init_val,pos)
     plsq = leastsq(re, p, args=(data, x))
-    
+    result_data = func1(x,plsq[0])
+    #print result_data
+    ddd = ""
+    for d in result_data:
+        ddd+=str(d)+','
+    print ddd
+    ddd = ''
+    for d in plsq[0]:
+        ddd+=str(d)+','
+    print ddd
     return plsq[0]
 def wx_fitArgs(modelName,init_val,argsName,x,p,data,MPL):
     pos = args_dict[argsName]
@@ -89,17 +97,23 @@ def simulationData(modelName,x,init_val,argsName,p):
     data = func1(x, p) 
     return data
 if __name__  == '__main__':
-    real_data = [173772,196452,214711,237735,265464,289709,312804,337017,362827]
-    x = np.linspace(0, 1, len(real_data))
+    dd = input()
+#     with open('/home/yandong/桌面/data.json','r') as f:
+#         dd = json.load(f)
+    #print dd
+    ##total_dict = {}
+    ##real_data = [173772,196452,214711,237735,265464,289709,312804,337017,362827]
+    #x = np.linspace(0, 1, len(real_data))
     #第一步猜想的值
-    p0 = [0.0001]  
-    init_val = [362827.0,173772]
-    fitArgs('SI',init_val,'I',x,p0,real_data) 
+    ##p0 = [0.00001]  
+    #init_val = [362827.0,173772]
+    #print jsonData
+    fitArgs('SI',dd['init_val'],'I',dd['x'],dd['p0'],dd['real_data']) 
     
-    #实际的值
-    p = [0.003]
-    x0 = np.linspace(0, 1, len(real_data))
-    #这里的data要换成真实的数据值
-    data = simulationData('SI', x0, init_val,'I', p)
+#     #实际的值
+#     p = [0.003]
+#     x0 = np.linspace(0, 1, len(real_data))
+#     #这里的data要换成真实的数据值
+#     data = simulationData('SI', x0, init_val,'I', p)
     #fitArgs('SI',init_val,'I',x0,p0,data) 
     #print data

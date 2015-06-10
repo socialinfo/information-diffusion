@@ -1,18 +1,21 @@
 package ucas.information.entity;
 
+import java.util.ArrayList;
+
+
 public class SIModel {
-	public float getAlpha() {
-		return alpha;
-	}
-	public void setAlpha(float alpha) {
-		this.alpha = alpha;
-	}
 	public float getBeta() {
 		return beta;
 	}
 	public void setBeta(float beta) {
 		this.beta = beta;
 	}
-	float alpha;
 	float beta;
+	ArrayList ys;
+	public ArrayList getYs() {
+		return ys;
+	}
+	public void setYs(ArrayList ys) {
+		this.ys = ys;
+	}
 }

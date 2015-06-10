@@ -31,7 +31,15 @@
 					<h2>json file</h2>
 					<input type="file" id="exampleInputFile" />
 					<button type="button" id='startSimulation' class="btn btn-primary btn-lg btn-block">START</button>
+					<button type="button" id='startFitting' class="btn btn-primary btn-lg btn-block">Fitting</button>
 				</div>
+				<div>
+					<div class="alert alert-success" role="alert">
+						<p>SI Model</p>
+						<p id='outcome'></p><span class="badge" id='fitargs'></span>
+					</div>
+				</div>
+				
 				<!--lay the dynamic simulation panel -->
 				<div id='simulationPanel'>
 
