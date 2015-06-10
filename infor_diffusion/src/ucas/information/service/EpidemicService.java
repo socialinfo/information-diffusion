@@ -1,10 +1,5 @@
 package ucas.information.service;
 
-import org.python.core.PyFunction;
-import org.python.core.PyInteger;
-import org.python.core.PyObject;
-import org.python.util.PythonInterpreter;
-
 import ucas.information.entity.SIModel;
 
 public class EpidemicService {
