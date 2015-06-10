@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
+<%
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path;
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -17,20 +23,26 @@
 }
 
 </style>
+<script src="<%=basePath%>/js/d3.min.js"></script>
+<script src="<%=basePath%>/js/cascades/button.js"></script>
+<script src="<%=basePath%>/js/jquery/jquery-1.11.1.min.js"></script>
 <title>Insert title here</title>
 
 </head>
 <body>
 
 <div>
-	<button>maximizing the spread of cascades</button>
+	<button id='max_spread_of_cascades'>maximizing the spread of cascades</button>
+	<h2 id='outcome'>this is a header</h2>
 </div>
 
- <script src="http://d3js.org/d3.v3.min.js"></script>
+ 
 <script>
 
-var width = 960,
-    height = 700;
+//var width = 960,
+//   height = 700;
+var width = document.documentElement.clientWidth;
+    height = document.documentElement.clientHeight-300;
 
 var color = d3.scale.category20();
 
