@@ -30,8 +30,32 @@ circle .infected{
 fill: none;
 stroke: black;
 stroke-width:3;
+shape-rendering: crispEdges;
 }
-.axis text {
-font-family: sans-serif;
-font-size: 11px;
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+.lineS{
+	fill: none;
+  stroke: steelblue;
+  stroke-width: 3px;
+}
+.lineI{
+	fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+.lineR{
+	fill: none;
+  stroke: green;
+  stroke-width: 3px;
+}
+.tooltips{
+	width:200px;
+	height:50px;
+	position:fixed;
+	right:0px;
+	top:0px;
 }

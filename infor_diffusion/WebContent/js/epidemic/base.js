@@ -49,14 +49,35 @@ function bindEvent(){
 			data : postData,
 			dataType : 'json',
 			success : function(data, textStatus, jqXHR) {
+				$('#outcome').text('success fitting with arguments')
+				$('#fitargs').text(data.beta)
+				showFittingCurve(data.ys)
 				
 			},
 			error:function(e)
 			{
-				alert('communication error')
+				$('#outcome').text('failed due to communication error')
 			}
 			
 		});
 		
 	})
 }
+//draw the fitting line
+function showFittingCurve(ys){
+	
+	var data = []
+	for(var i=1;i<=ys.length;i++){
+		data.push({x:i,y:ys[i-1]})
+	}
+	var line = d3.svg.line()
+				.x(function(d) { return xScale(d.x); })
+				.y(function(d) { return yScale(d.y); });
+	svgpanel.select('#fitline').remove()
+	svgpanel.append("path")
+			.datum(data)
+			.attr('id','fitline')
+			.attr("class", "line")
+			.attr("d", line);
+}
+

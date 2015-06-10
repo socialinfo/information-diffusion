@@ -42,8 +42,13 @@ var colors = d3.scale.category20();
 			readActivity()
 			var force = d3.layout.force()
 				.size([width, height])
-				.linkDistance([50])
-				.charge([-100]);
+				.linkStrength(0.1)
+			    .friction(0.9)
+			    .linkDistance(50)
+			    .charge(-100)
+			    .gravity(0.1)
+			    .theta(0.8)
+			    .alpha(0.1)
 			var zoomer = d3.behavior.zoom().scaleExtent([0.4,10]).on('zoom',rescale)
 			var outer = d3.select("#main")
 						.append("svg:svg")
@@ -99,7 +104,6 @@ var colors = d3.scale.category20();
 										return colors(1);
 								}).on('click',function(d){
 									deleteNode(d.id)
-
 								})
 								.call(force.drag);
 				nodes.append("title")
@@ -216,7 +220,7 @@ function updatePanel(){
 		circles.enter()
 				.append('circle')
 				.attr("cx", function(d) {
-						console.log(d)
+						//console.log(d)
 					   	return xScale(d[0]);
 				})
 				.attr("cy", function(d) {
