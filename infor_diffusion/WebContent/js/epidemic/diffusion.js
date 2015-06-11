@@ -40,6 +40,26 @@ var colors = d3.scale.category20();
 		$(document).ready(function(){
 			bindEvent()
 			readActivity()
+			//屏蔽右键
+//			$("#main").oncontextmenu = function ()
+//	        {
+//	            return false;
+//	        }
+			$(document).bind("contextmenu",function(){return false;});
+			var fileToRead
+			$.ajax({
+				type : "GET",
+				url : "getcurfile.do",
+				dataType : 'json',
+				async: false,
+				success : function(data, textStatus, jqXHR) {
+					fileToRead = data.message
+				},
+				error : function(e) {
+					
+				}
+
+			});
 			var force = d3.layout.force()
 				.size([width, height])
 				.linkStrength(0.1)
@@ -66,9 +86,9 @@ var colors = d3.scale.category20();
 			svg = outer.append('svg:g')
 				    	.call(zoomer)
 				    	.on("dblclick.zoom", null)
-			d3.json('json/output.json',function(error,data){
+			d3.json('json/'+fileToRead,function(error,data){
 				if (error){
-					alert(error)
+					
 					console.log(error)
 				}
 				dataset = data
@@ -104,6 +124,12 @@ var colors = d3.scale.category20();
 										return colors(1);
 								}).on('click',function(d){
 									deleteNode(d.id)
+								}).on('mousedown',function(d){
+									console.log(d3.event)
+									if(d3.event.which == 3){
+										change2Infect(d.id)
+									}
+									
 								})
 								.call(force.drag);
 				nodes.append("title")
@@ -181,6 +207,11 @@ function rescale() {
       "translate(" + trans + ")"
       + " scale(" + scale + ")");
 }
+change2Infect = function(id){
+	d3.select('#n'+id).style('fill','#F00')
+	nodeMap[id].status = 4
+	
+}		
 /*delete the selected node and the edges it connected*/
 deleteNode = function(id){
 				/*delete the selected node*/
