@@ -21,7 +21,7 @@ function bindFunc(){
             		//alert(data.message)
             	}
             	else{
-            		alert(data.message)
+            		//alert(data.message)
             		$("#dynamicimg").attr('src',data.message)
             	}
             }

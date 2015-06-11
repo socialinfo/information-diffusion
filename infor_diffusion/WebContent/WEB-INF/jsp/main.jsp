@@ -80,7 +80,7 @@
 		</div>
 		<div>
 			<iframe id="contentframe"
-				style="width: 100%; height: 1000px; border: 0px;margin-top:50px;" scrolling="no"></iframe>
+				style="width: 100%; height: 1000px; border: 0px;margin-top:50px;"></iframe>
 		</div>
 	</div>
 	<script type="text/javascript" charset="utf-8">

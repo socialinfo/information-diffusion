@@ -61,6 +61,11 @@ function bindEvent(){
 			
 		});
 		
+	});
+	$("#uploadFile").on('click',function(){
+		//var data = $('#uploadForm').serialize()
+		//alert(data)
+		alert('123')
 	})
 }
 //draw the fitting line

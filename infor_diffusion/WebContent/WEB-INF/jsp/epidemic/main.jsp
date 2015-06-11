@@ -28,8 +28,10 @@
 			<div class='col-lg-3'>
 				<!--lay the control panel -->
 				<div>
-					<h2>json file</h2>
-					<input type="file" id="exampleInputFile" />
+					<form method='post' enctype="multipart/form-data" id='uploadForm' action='upload.do'>
+						<input type="file" id="inputFile" name='file' />
+						<button type="submit"  class="btn btn-primary btn-lg btn-block">upload</button>
+					</form>
 					<button type="button" id='startSimulation' class="btn btn-primary btn-lg btn-block">START</button>
 					<button type="button" id='startFitting' class="btn btn-primary btn-lg btn-block">Fitting</button>
 				</div>
