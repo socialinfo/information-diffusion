@@ -26,7 +26,7 @@ public class EpidemicController {
 	@RequestMapping(value = "drawmodel.do",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public ModelPoint DrawModel(@ModelAttribute DrawModel model){
-		System.out.println(model);
+		//System.out.println(model);
 		return service.drawModel(model);
 	}
 	@RequestMapping(value = "dynamicmodel.do",method={RequestMethod.GET,RequestMethod.POST})

@@ -18,7 +18,7 @@ function bindFunc(){
             },
             success: function(data) {
             	if(data.status==1){
-            		alert(data.message)
+            		//alert(data.message)
             	}
             	else{
             		alert(data.message)
