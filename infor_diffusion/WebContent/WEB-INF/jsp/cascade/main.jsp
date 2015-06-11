@@ -24,8 +24,12 @@
 <script src="<%=basePath%>/js/jquery/jquery-1.11.1.min.js"></script>
 <script src="<%=basePath%>/js/d3.min.js"></script>
 
+<<<<<<< HEAD
 
 
+=======
+<script src="<%=basePath%>/js/cascades/button.js"></script>
+>>>>>>> branch 'master' of https://github.com/socialinfo/information-diffusion.git
 
 <title>Insert title here</title>
 

@@ -301,6 +301,8 @@ function simulationSI()
 	simulateData.push([i+1,total_infected_people])
 	updatePanel()
 	if(!canSend && handle!='undefined'){
+		//isRun = false
+		$('#startSimulation').trigger('click')
 		clearInterval(handle)
 	}
 

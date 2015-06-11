@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ucas.information.entity.DrawModel;
+import ucas.information.entity.Message;
 import ucas.information.entity.ModelPoint;
 import ucas.information.entity.SIModel;
 import ucas.information.service.EpidemicService;
@@ -25,8 +26,12 @@ public class EpidemicController {
 	@RequestMapping(value = "drawmodel.do",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public ModelPoint DrawModel(@ModelAttribute DrawModel model){
-		System.out.println(model);
+		//System.out.println(model);
 		return service.drawModel(model);
 	}
-	
+	@RequestMapping(value = "dynamicmodel.do",method={RequestMethod.GET,RequestMethod.POST})
+	@ResponseBody
+	public Message DynamicModel(DrawModel model){
+		return service.DynamicModel(model);
+	}
 }
