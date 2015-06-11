@@ -20,6 +20,6 @@ public class MaximizingController {
 	@RequestMapping(value = "maximizing.do",method={RequestMethod.GET,RequestMethod.POST})
 	@ResponseBody
 	public List<Integer>[] Maxmizing(){
-		return msc
+		return msc.slist;
 	}
 }
