@@ -72,8 +72,8 @@ $(document).ready(function(){
 		
 		$('#max_spread_of_cascades').on('click',function(){
 
-			$('#outcome').text('button clicked!')
-			var handle = setInterval(changecolor, 500);
+			$('#outcome').text(' starting!')
+			var handle = setInterval(changecolor, 1000);
 		})	
 		
 		
