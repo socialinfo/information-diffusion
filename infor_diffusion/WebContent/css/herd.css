@@ -1,0 +1,49 @@
+@CHARSET "UTF-8";
+
+body {
+  font: 300 36px "Lane - Posh";
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  background: #fff;
+}
+
+#div_mainwindow {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+}
+
+#div_control {
+	margin-left: 1%;
+	height: 5%;
+	width:100%;
+	position: fixed;
+}
+
+#div_graph {
+	margin: auto;
+	height: 90%;
+	width:100%;
+	margin-top: 5%; 
+	position: fixed;
+	background: #eee;
+	overflow: hidden;
+}
+
+circle.node 
+  {
+  cursor: pointer;
+  stroke: #000;
+  stroke-width: .5px;
+  }
+
+line.link 
+  {
+  fill: none;
+  stroke: #9ecae1;
+  stroke-width: 1.5px;
+  }
