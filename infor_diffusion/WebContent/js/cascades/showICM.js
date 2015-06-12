@@ -24,7 +24,7 @@
   var link = svg.selectAll(".link")
       .data(data.links)
       .enter().insert("line", ".node")
-      .attr("class", "link").style("stroke", "#A4D3EE").style("stroke-width", 3);;
+      .attr("class", "link").style("stroke", "#A4D3EE").style("stroke-width", 1);;
   
 
   var node = svg.selectAll(".node")
