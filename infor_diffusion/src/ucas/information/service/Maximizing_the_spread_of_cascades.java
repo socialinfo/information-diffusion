@@ -7,10 +7,12 @@
 
 package ucas.information.service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import ucas.information.entity.CascadeId;
 import ucas.information.entity.GraphAdjacencyList;
 
 public class Maximizing_the_spread_of_cascades {
@@ -18,10 +20,24 @@ public class Maximizing_the_spread_of_cascades {
 	/**
 	 * @param args
 	 */
-	public List<Integer>[] slist;
+	
 	public List<Integer> s = new LinkedList<Integer>();
 	public List<Integer> activiated_nodes = new LinkedList<Integer>();
 	
+	public CascadeId maximize(String fileName){
+		int k = 4;
+		GraphAdjacencyList adjacencyList = new GraphAdjacencyList(fileName);
+		Maximizing_the_spread_of_cascades msc = new Maximizing_the_spread_of_cascades();
+		msc.compute(k, adjacencyList.Adjacency_List);
+		CascadeId id = new CascadeId();
+		List<Integer> list = msc.s;
+		List<Integer> list_node = msc.activiated_nodes;
+//		list.add(1);
+//		list_node.add(2);
+		id.setList(list);
+		id.setList_node(list_node);
+		return id;
+	}
 	public void compute(int k, Map<Integer, List<Integer>> gal) {
 		
 		int count = k;
@@ -72,12 +88,11 @@ public class Maximizing_the_spread_of_cascades {
 			temp = 0;
 			length = 0;
 		}
-		slist[1]=activiated_nodes;
-		slist[0]=s;
+		
 
 	}
 
-	public void maximize( ) {
+	public void maximizing( ) {
 		// TODO Auto-generated method stub
 	//	String path = "D:\\links.txt";
 		String path = Maximizing_the_spread_of_cascades.class.getClassLoader().getResource("links.txt").getPath();
@@ -110,53 +125,4 @@ public class Maximizing_the_spread_of_cascades {
 		
 		
 	}
-	
-//	/* transfrom jason to txt file */
-//	public void Jason_to_txt(String filename_jason,String filename_txt){
-//		JSONObject obj = new JSONObject();
-//		JSONArray arr1=new JSONArray();
-//		String temp;
-//		temp=ReadFile(filename_jason);
-//	
-//	}
-//	
-//	//读文件，返回字符串
-//	public String ReadFile(String path){
-//	    
-//	    BufferedReader reader = null;
-//	    String laststr = "";
-//	    try {
-//	     //System.out.println("以行为单位读取文件内容，一次读一整行：");
-//	     reader = new BufferedReader(new FileReader(path));
-//	     String tempString = null;
-//	     int line = 1;
-//	     //一次读入一行，直到读入null为文件结束
-//	     while ((tempString = reader.readLine()) != null) {
-//	      //显示行号
-//	      System.out.println("line "+line+": "+tempString);
-//	      laststr = laststr+tempString;
-//	      line++ ;
-//	     }
-//	     reader.close();
-//	    } catch (IOException e) {
-//	     e.printStackTrace();
-//	    } finally {
-//	     if (reader != null) {
-//	      try {
-//	       reader.close();
-//	      } catch (IOException e1) {
-//	      }
-//	     }
-//	    }
-//	    return laststr;
-//	}
-//	         //把json格式的字符串写到文件
-//	public void writeFile(String filePath, String sets) throws IOException {
-//	    FileWriter fw = new FileWriter(filePath);
-//	    PrintWriter out = new PrintWriter(fw);
-//	    out.write(sets);
-//	    out.println();
-//	    fw.close();
-//	    out.close();
-//	   }
 }

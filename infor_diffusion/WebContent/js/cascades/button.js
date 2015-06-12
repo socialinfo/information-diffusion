@@ -1,6 +1,7 @@
 /**
  * 
  */
+
 $(document).ready(function(){
 	bindEvent()
 	
@@ -8,7 +9,7 @@ $(document).ready(function(){
 function bindEvent(){
 
 	$('#max_spread_of_cascades').on('click',function(){
-
+		
 		$('#outcome').text('button clicked!')
         svg.select("#n11").attr("r", 15).style("fill", "#ff3300")
         svg.select("#n48").attr("r", 15).style("fill", "#ff3300")

@@ -1,6 +1,9 @@
 /**
  * 
  */
+var handle1
+var handle
+var jsonFile = 'links.txt'
 $(document).ready(function(){
         var width = document.documentElement.clientWidth;
 		height = document.documentElement.clientHeight - 300;
@@ -12,8 +15,10 @@ $(document).ready(function(){
 
 		var svg = d3.select("body").append("svg").attr("width", width).attr(
 				"height", height);
-		var keynode = [63,36,21,56]
+		var keynode = [10,3,2,12,13,14,15,23,24,25,26,27,28,29,31,32,33,34,35,36,37,38,43,44,48,49,51,55,58,64,68,69,70,71,72,47,11,57,59,60,61,62,63,65,66,73,74,75,76,39,54,16,41,56,40,42]
 		var curkeynode = 0
+		var curkeynode1 = 0
+		var keynode1 = [63,36,21,56]
 
 		d3.json("json/cascades/miserables.json", function(error, graph) {
 			force.nodes(graph.nodes).links(graph.links).start();
@@ -62,18 +67,52 @@ $(document).ready(function(){
 			cur_node_id = keynode[curkeynode]
 			var id = "#n" + cur_node_id
 			var node = d3.select(id)
-			node.attr("r", 15).style("fill", "#ff3300")
+			node.attr("r", 12).style("fill", "#ff9922")
 			curkeynode = curkeynode + 1
 			if (curkeynode >= keynode.length) {
 				clearInterval(handle)
 				console.log('clear interval')
 			}
 		}
+		function changecolor1() {
+			cur_node_id = keynode1[curkeynode1]
+			var id = "#n" + cur_node_id
+			var node = d3.select(id)
+			node.attr("r", 15).style("fill", "#ff3300")
+			curkeynode1 = curkeynode1 + 1
+			if (curkeynode1 >= keynode1.length) {
+				clearInterval(handle1)
+				console.log('clear interval')
+			}
+		}
+		
 		
 		$('#max_spread_of_cascades').on('click',function(){
-
+			var data = 'file='+jsonFile
+			$.ajax({
+	            cache: true,
+	            type: "POST",
+	            url:'cascade.do',
+	            data:data,
+	            async: true,
+	            error: function(request) {
+	                alert("Connection error");
+	            },
+	            success: function(data) {
+	            	
+	            	dataList =  data.list
+	            	console.log(dataList)
+	            	//alert(dataList)
+	            	for(var i=0;i<dataList.length;i++){
+	        			var id = "#n" + dataList[i]
+	        			var node = d3.select(id)
+	        			node.attr("r", 15).style("fill", "#ff3300")
+	            	}
+	            }
+	        });
 			$('#outcome').text(' starting!')
-			var handle = setInterval(changecolor, 1000);
+//			handle = setInterval(changecolor, 200);
+//			handle1 = setInterval(changecolor1,2000);
 		})	
 		
 		
