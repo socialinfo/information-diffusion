@@ -1,3 +1,4 @@
+
 /**
  * 
  */
@@ -74,7 +75,5 @@ $(document).ready(function(){
 
 			$('#outcome').text(' starting!')
 			var handle = setInterval(changecolor, 1000);
-		})	
-		
-		
+		})
 })

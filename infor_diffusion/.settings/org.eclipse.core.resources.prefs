@@ -1,2 +1,4 @@
 eclipse.preferences.version=1
+encoding//src/SIRModel.py=utf-8
+encoding//src/leastsq.py=utf-8
 encoding//src/ucas/information/service/EpidemicService.java=UTF-8
