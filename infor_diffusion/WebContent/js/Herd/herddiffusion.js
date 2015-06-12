@@ -161,7 +161,7 @@ function HerDiffusion() {
 }
 
 function readKeyNode() {
-	d3.json('json/KeyNode1.json', function(error, data) {
+	d3.json('json/KeyNode.json', function(error, data) {
 		if (error) {
 			console.log(error)
 		}
