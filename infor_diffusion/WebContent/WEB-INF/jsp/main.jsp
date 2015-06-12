@@ -58,7 +58,7 @@
 				aria-expanded="false">瀑布模型 <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="#"
-						onclick='changePage("epidemic/main","epili",false,"<li><a>Home</a></li><li class=active><a>Epidemic</a></li>");'>ICM</a></li>
+						onclick='changePage("cascade/mainICM","epili",false,"<li><a>Home</a></li><li class=active><a>Epidemic</a></li>");'>ICM</a></li>
 					<li><a href="#"
 						onclick='changePage("cascade/main","epili",false,"<li><a>Home</a></li><li class=active><a>Epidemic</a></li>");'>Maximizing</a></li>
 					
