@@ -24,12 +24,7 @@
 <script src="<%=basePath%>/js/jquery/jquery-1.11.1.min.js"></script>
 <script src="<%=basePath%>/js/d3.min.js"></script>
 
-
-
-
-
 <title>Insert title here</title>
-
 </head>
 <body>
 
@@ -38,13 +33,8 @@
 			cascades</button>
 		<h2 id='outcome'>this is a header</h2>
 	</div>
-
-
-	
 		
-	<script src="<%=basePath%>/js/cascades/show.js"></script>
-	
-		
+	<script src="<%=basePath%>/js/cascades/show.js"></script>		
 	
 </body>
 </html>
