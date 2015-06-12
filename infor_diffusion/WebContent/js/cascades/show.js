@@ -12,6 +12,8 @@ $(document).ready(function(){
 
 		var svg = d3.select("body").append("svg").attr("width", width).attr(
 				"height", height);
+		var keynode = [63,36,21,56]
+		var curkeynode = 0
 
 		d3.json("json/cascades/miserables.json", function(error, graph) {
 			force.nodes(graph.nodes).links(graph.links).start();
@@ -55,14 +57,23 @@ $(document).ready(function(){
 			});
 		//	svg.select("#n22").attr("r", 15).style("fill", "#ff3300")
 		});
+		
+		function changecolor() {
+			cur_node_id = keynode[curkeynode]
+			var id = "#n" + cur_node_id
+			var node = d3.select(id)
+			node.attr("r", 15).style("fill", "#ff3300")
+			curkeynode = curkeynode + 1
+			if (curkeynode >= keynode.length) {
+				clearInterval(handle)
+				console.log('clear interval')
+			}
+		}
+		
 		$('#max_spread_of_cascades').on('click',function(){
 
-			$('#outcome').text('button clicked!')
-	        svg.select("#n63").attr("r", 15).style("fill", "#ff3300")
-	        svg.select("#n36").attr("r", 15).style("fill", "#ff3300")
-	        svg.select("#n21").attr("r", 15).style("fill", "#ff3300")
-	        svg.select("#n56").attr("r", 15).style("fill", "#ff3300")
-	        alert("dadfdaaf")
+			$('#outcome').text(' starting!')
+			var handle = setInterval(changecolor, 1000);
 		})	
 		
 		
