@@ -13,82 +13,92 @@ var cur_node_id
 var force
 var height
 var width
-$(document).ready(function(){
-	height = document.getElementById('div_graph').offsetHeight - 100;
-	width = document.getElementById('div_graph').offsetWidth - 100;
-	svg = d3.select("#div_graph").append("svg").attr("width", width).attr(
-		"height", height)
-	$('#readkeynode').on('click', function() {
-		readKeyNode();
-	})
+var color = d3.scale.category20();
+$(document).ready(
+		function() {
+			height = document.getElementById('div_graph').offsetHeight;
+			width = document.getElementById('div_graph').offsetWidth;
+			var zoomer = d3.behavior.zoom().scaleExtent([ 0.4, 10 ]).on('zoom',
+					rescale)
+			var outer = d3.select("#div_graph").append("svg:svg").attr('xmlns',
+					'http://www.w3.org/2000/svg').attr("width", width).attr(
+					"height", height).attr("pointer-events", "all")
 
-	$('#startdiffusion').on('click', function() {
-		var handle = setInterval(HerDiffusion, 100);
-	})
-	var force = d3.layout.force().charge(-100).linkDistance(30).size(
-			[ width, height ])
-			.linkStrength(0.1)
-		    .friction(0.9)
-		    .charge(-100)
-		    .gravity(0.1)
-		    .theta(0.8)
-		    .alpha(0.1)
+			outer.append('svg:g').append('svg:rect').attr('width', width).attr(
+					'height', height).attr('fill', 'none').attr('stroke',
+					'#777').attr('stroke-width', '3');
+			
+			svg = outer.append('svg:g').call(zoomer).on("dblclick.zoom", null)
+			$('#readkeynode').on('click', function() {
+				readKeyNode();
+			})
 
-	d3.json('json/output1.json', function(error, data) {
-		if (error) {
-			console.log(error)
-		}
-		dataset = data
+			$('#startdiffusion').on('click', function() {
+				var handle = setInterval(HerDiffusion, 100);
+			})
+			var force = d3.layout.force().charge(-100).linkDistance(30).size(
+					[ width, height ]).linkStrength(0.1).friction(0.9).charge(
+					-100).gravity(0.1).theta(0.8).alpha(0.1)
 
-		nodes_data = dataset.nodes
-		edges_data = dataset.edges
-		force.nodes(nodes_data).links(edges_data)
-		force.start()
+			d3.json('json/output1.json', function(error, data) {
+				if (error) {
+					console.log(error)
+				}
+				dataset = data
 
-		edges = svg.append("svg:g").selectAll("line").data(edges_data, function(d) {
-			return d.source.id + '-' + d.target.id
-		}).enter().append("line").attr('id', function(d) {
-			return 'e' + d.source.id + '-' + d.target.id
-		}).style("stroke", "#A4D3EE").style("stroke-width", 3);
-		// Create nodes as circles
-		nodes = svg.append("svg:g").selectAll("circle").data(nodes_data,
-				function(d) {
+				nodes_data = dataset.nodes
+				edges_data = dataset.edges
+				force.nodes(nodes_data).links(edges_data)
+				force.start()
+
+				edges = svg.append("svg:g").selectAll("line").data(edges_data,
+						function(d) {
+							return d.source.id + '-' + d.target.id
+						}).enter().append("line").attr('class', 'link').attr(
+						'id', function(d) {
+							return 'e' + d.source.id + '-' + d.target.id
+						}).style("stroke-width", 3);
+				// Create nodes as circles
+				nodes = svg.append("svg:g").selectAll("circle").data(
+						nodes_data, function(d) {
+							return d.id;
+						}).enter().append("circle").attr('pro', function(d) {
+					return d.pro;
+				}).attr('class', 'node').attr('status', 0).attr("r", 5).attr(
+						'id', function(d) {
+							return 'n' + d.id
+						}).style("fill", function(d) {
+					return color(1);
+				}).call(force.drag)
+				nodes.append("title").text(function(d) {
 					return d.id;
-				}).enter().append("circle").attr('pro', function(d) {
-			return d.pro;
-		}).attr('class', 'node').attr('status', 0).attr("r", 5).attr('id',
-				function(d) {
-					return 'n' + d.id
-				}).style("fill", '#000000').call(force.drag)
-		nodes.append("title").text(function(d) {
-			return d.id;
-		});
+				});
 
-		force.on("tick", function() {
+				force.on("tick", function() {
 
-			edges.attr("x1", function(d) {
-				return d.source.x;
-			}).attr("y1", function(d) {
-				return d.source.y;
-			}).attr("x2", function(d) {
-				return d.target.x;
-			}).attr("y2", function(d) {
-				return d.target.y;
+					edges.attr("x1", function(d) {
+						return d.source.x;
+					}).attr("y1", function(d) {
+						return d.source.y;
+					}).attr("x2", function(d) {
+						return d.target.x;
+					}).attr("y2", function(d) {
+						return d.target.y;
+					});
+
+					nodes.attr("cx", function(d) {
+						return d.x;
+					}).attr("cy", function(d) {
+						return d.y;
+					});
+				});
+				nodes2Map(nodes_data)
 			});
+		})
 
-			nodes.attr("cx", function(d) {
-				return d.x;
-			}).attr("cy", function(d) {
-				return d.y;
-			});
-		});
-		nodes2Map(nodes_data)
-	});
-})
-
-//console.log(d3.select("div_graph"))
+// console.log(d3.select("div_graph"))
 //
-//console.log('begin')
+// console.log('begin')
 
 function nodes2Map(nodes) {
 	nodes.forEach(function(node) {
@@ -101,10 +111,8 @@ function nodes2Map(nodes) {
 	for ( var key in nodeMap) {
 		node_id.push(key);
 	}
-	
+
 }
-
-
 
 function HerDiffusion() {
 	cur_node_id = node_id[cur_node]
@@ -168,4 +176,9 @@ function readKeyNode() {
 	})
 }
 
+function rescale() {
+	trans = d3.event.translate;
+	scale = d3.event.scale;
 
+	svg.attr("transform", "translate(" + trans + ")" + " scale(" + scale + ")");
+}
