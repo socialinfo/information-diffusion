@@ -2,7 +2,10 @@
 
 // var width = 1600;
 // var height = 600;
+<<<<<<< HEAD
+=======
 var svg
+>>>>>>> branch 'master' of https://github.com/socialinfo/information-diffusion.git
 var Threshold = 0.5
 var cur_node = 0
 var nodearray;
