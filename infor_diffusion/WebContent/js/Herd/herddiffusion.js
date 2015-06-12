@@ -40,7 +40,7 @@ $(document).ready(
 					[ width, height ]).linkStrength(0.1).friction(0.9).charge(
 					-100).gravity(0.1).theta(0.8).alpha(0.1)
 
-			d3.json('json/output.json', function(error, data) {
+			d3.json('json/output1.json', function(error, data) {
 				if (error) {
 					console.log(error)
 				}
