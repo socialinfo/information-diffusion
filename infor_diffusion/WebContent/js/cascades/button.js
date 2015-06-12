@@ -15,6 +15,5 @@ function bindEvent(){
         svg.select("#n48").attr("r", 15).style("fill", "#ff3300")
         svg.select("#n55").attr("r", 15).style("fill", "#ff3300")
         svg.select("#n25").attr("r", 15).style("fill", "#ff3300")
-        alert("dadfdaaf")
 	})	
 }

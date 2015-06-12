@@ -30,10 +30,10 @@
 				<div>
 					<form method='post' enctype="multipart/form-data" id='uploadForm' action='upload.do'>
 						<input type="file" id="inputFile" name='file' />
-						<button type="submit"  class="btn btn-primary btn-lg btn-block">upload</button>
+						<button type="submit"  class="btn btn-info btn-lg btn-block">upload</button>
 					</form>
 					<button type="button" id='startSimulation' class="btn btn-primary btn-lg btn-block">START</button>
-					<button type="button" id='startFitting' class="btn btn-primary btn-lg btn-block">Fitting</button>
+					<button type="button" id='startFitting' class="btn btn-success btn-lg btn-block">Fitting</button>
 				</div>
 				<div>
 					<div class="alert alert-success" role="alert">
