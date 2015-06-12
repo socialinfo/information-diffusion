@@ -13,6 +13,7 @@ var cur_node_id
 var force
 var height
 var width
+var color = d3.scale.category20();
 $(document).ready(function(){
 	height = document.getElementById('div_graph').offsetHeight - 100;
 	width = document.getElementById('div_graph').offsetWidth - 100;
@@ -47,9 +48,9 @@ $(document).ready(function(){
 
 		edges = svg.append("svg:g").selectAll("line").data(edges_data, function(d) {
 			return d.source.id + '-' + d.target.id
-		}).enter().append("line").attr('id', function(d) {
+		}).enter().append("line").attr('class','link').attr('id', function(d) {
 			return 'e' + d.source.id + '-' + d.target.id
-		}).style("stroke", "#A4D3EE").style("stroke-width", 3);
+		}).style("stroke-width", 3);
 		// Create nodes as circles
 		nodes = svg.append("svg:g").selectAll("circle").data(nodes_data,
 				function(d) {
@@ -59,7 +60,9 @@ $(document).ready(function(){
 		}).attr('class', 'node').attr('status', 0).attr("r", 5).attr('id',
 				function(d) {
 					return 'n' + d.id
-				}).style("fill", '#000000').call(force.drag)
+				}).style("fill", function(d) {
+					return color(1);
+				}).call(force.drag)
 		nodes.append("title").text(function(d) {
 			return d.id;
 		});
