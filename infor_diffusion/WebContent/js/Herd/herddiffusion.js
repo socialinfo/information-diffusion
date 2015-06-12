@@ -9,7 +9,7 @@ var force = d3.layout.force().charge(-100).linkDistance(30).size(
 	    .friction(0.9)
 	    .charge(-100)
 	    .gravity(0.1)
-	    .theta(0.8)information
+	    .theta(0.8)
 	    .alpha(0.1)
 console.log(d3.select("div_graph"))
 var svg = d3.select("#div_graph").append("svg").attr("width", width).attr(
